@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Profile Card Practice</title>
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:22px;font-family:Arial,sans-serif;background:linear-gradient(135deg,#10172a,#1e3a5f 55%,#6d28d9);color:#182235}.wrap{width:100%;max-width:700px}.heading{text-align:center;color:white;margin-bottom:22px}.heading h1{margin:0 0 8px;font-size:clamp(1.8rem,5vw,2.6rem)}.heading p{color:#dbeafe}.card{background:#fff;border-radius:24px;overflow:hidden;box-shadow:0 24px 70px #0005}.banner{height:110px;background:linear-gradient(110deg,#38bdf8,#6366f1,#a855f7)}.content{padding:0 28px 28px}.avatar{width:94px;height:94px;margin-top:-47px;border-radius:50%;display:grid;place-items:center;color:white;font-size:2rem;font-weight:800;background:linear-gradient(135deg,#0f172a,#475569);border:5px solid white}.name{margin:14px 0 5px;font-size:1.8rem}.course{margin:0;color:#64748b;font-weight:600}.status{display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:8px 13px;border-radius:999px;font-weight:700;font-size:.9rem;background:#dcfce7;color:#166534}.dot{width:9px;height:9px;border-radius:50%;background:currentColor}.status.busy{background:#fee2e2;color:#991b1b}.message{color:#475569;margin:12px 0 20px}h2{font-size:1.05rem;margin:22px 0 12px}.skills{display:flex;flex-wrap:wrap;gap:10px}.skill{background:#eff6ff;color:#1d4ed8;border:1px solid #bfdbfe;border-radius:12px;padding:10px 14px;font-weight:700}button{margin-top:24px;width:100%;border:0;border-radius:13px;padding:14px 18px;background:#4f46e5;color:white;font-size:1rem;font-weight:700;cursor:pointer}button:hover{background:#4338ca}.note{text-align:center;color:#dbeafe;font-size:.85rem;margin-top:18px;line-height:1.5}@media(max-width:480px){body{padding:16px}.content{padding:0 20px 22px}}
+</style>
+</head>
+<body><main class="wrap">
+<header class="heading"><h1>Profile Card</h1><p>A simple web development practice activity</p></header>
+<section class="card" aria-label="Profile card"><div class="banner"></div><div class="content">
+<div class="avatar" id="avatar">D</div><h2 class="name" id="profileName">Danish</h2><p class="course" id="course">Software Engineering Student</p>
+<div class="status" id="status"><span class="dot"></span><span id="statusText">Available</span></div>
+<p class="message" id="message">I’m available for learning, collaboration, and new projects.</p>
+<h2>Skills</h2><div class="skills" id="skills"></div><button id="toggleBtn" type="button">Change to Busy</button>
+</div></section><p class="note">Concepts: component-style structure • props-style data • map() • state • click event</p>
+</main>
+<script>
+const profile={name:"Danish",course:"Software Engineering Student",skills:["HTML & CSS","JavaScript","Responsive Design"]};
+document.getElementById("profileName").textContent=profile.name;
+document.getElementById("avatar").textContent=profile.name.charAt(0).toUpperCase();
+document.getElementById("course").textContent=profile.course;
+const skillsContainer=document.getElementById("skills");
+profile.skills.map(skill=>{const tag=document.createElement("span");tag.className="skill";tag.textContent=skill;skillsContainer.appendChild(tag);return skill;});
+let isAvailable=true;const status=document.getElementById("status"),statusText=document.getElementById("statusText"),message=document.getElementById("message"),button=document.getElementById("toggleBtn");
+button.addEventListener("click",()=>{isAvailable=!isAvailable;statusText.textContent=isAvailable?"Available":"Busy";status.classList.toggle("busy",!isAvailable);message.textContent=isAvailable?"I’m available for learning, collaboration, and new projects.":"I’m currently busy, but you can check back with me soon.";button.textContent=isAvailable?"Change to Busy":"Change to Available";});
+</script></body></html>
